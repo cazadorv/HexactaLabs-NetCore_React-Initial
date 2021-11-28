@@ -12,7 +12,6 @@ using Stock.Repository.LiteDb.Configuration;
 using Stock.Repository.LiteDb.Interface;
 using Stock.Repository.LiteDb.Repository;
 using Stock.Settings;
-
 namespace Stock.Api
 {
     public class Startup
@@ -29,8 +28,8 @@ namespace Stock.Api
         {
             services.Configure<DomainSettings>(Configuration.GetSection("DomainSettings"));
             services.AddTransient<StoreService>();
-            //services.AddTransient<ProductService>();
-            //services.AddTransient<ProviderService>();
+            services.AddTransient<ProductService>();
+            services.AddTransient<ProviderService>();
             services.AddTransient<ProductTypeService>();
             services.AddTransient<Repository.LiteDb.Configuration.ConfigurationProvider>();
             services.AddTransient<ILiteConfiguration, LiteConfiguration>();
@@ -71,5 +70,13 @@ namespace Stock.Api
                 endpoints.MapControllers();
             });
         }
+    }
+
+    internal class ProviderService
+    {
+    }
+
+    internal class ProductService
+    {
     }
 }
